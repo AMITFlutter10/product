@@ -2,11 +2,9 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:product/register_page.dart';
-import 'package:product/splash_screen.dart';
+import 'package:product/view/screens/home_page.dart';
+import 'package:product/view/screens/login_page.dart';
 
-import 'home_page.dart';
-import 'login_page.dart';
 
 void main(){
  runApp(const MyApp());
@@ -17,9 +15,9 @@ class MyApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-   return MaterialApp(
+   return const MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: LoginPage(),
+     home: HomePage(),
    );
   }
 

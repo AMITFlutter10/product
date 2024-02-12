@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:product/widgets/default_form_field.dart';
+import 'package:product/view/widgets/default_form_field.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({super.key});
