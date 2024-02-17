@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:product/view/widgets/default_text.dart';
 
-class HomePage extends StatelessWidget{
-  const HomePage({super.key});
+import '../../model/item_model.dart';
+import '../../model/model.dart';
+import 'first_product.dart';
+import 'itembulider.dart';
 
-  @override
+class HomePage extends StatelessWidget{
+  HomePage({super.key });
+   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -25,17 +30,12 @@ class HomePage extends StatelessWidget{
                        fontWeight: FontWeight.bold),)),
               const SizedBox(height: 20,),
               SizedBox(
-                height: 300,
+                height: 400,
                 child: ListView.separated(
                   shrinkWrap: true,
-                    itemCount: 4,
+                    itemCount: data.length,
                     itemBuilder: (context, index){
-                  return ListTile(
-                      leading: Image.asset("assets/images/picc3.png") ,
-                      title: Text("Product1"),
-                      subtitle: Text("price"),
-                      trailing: Icon(Icons.favorite, color: Colors.red,),
-                  );
+                  return FirstProduct(model: data[index],);
                   //   Container(
                   //   // width: 100,
                   //   // height: 100,
@@ -68,22 +68,22 @@ class HomePage extends StatelessWidget{
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                    itemBuilder: (context, index)=> Container(
-                      child: Column(
-                        children: [
-                          Image.asset("assets/images/picc3.png",width: 100,height: 100,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text("product"),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
+                    itemBuilder: (context, index)=> ItemBuilder(itemProduct: dataProduct[index],),
                     separatorBuilder: (context, index)=> const SizedBox(width: 20,),
-                    itemCount: 3),
-              )
+                    itemCount: dataProduct.length
+                ),
+              ),
+              SizedBox(
+                height: 300,
+                width: 500,
+                child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index)=> ItemBuilder(itemProduct: dataProduct[index],),
+                    separatorBuilder: (context, index)=> const SizedBox(width: 20,),
+                    itemCount: dataProduct.length
+                ),
+              ),
             ],
           ),
         ),
