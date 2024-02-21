@@ -73,17 +73,20 @@ class HomePage extends StatelessWidget{
                     itemCount: dataProduct.length
                 ),
               ),
-              SizedBox(
-                height: 300,
-                width: 500,
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index)=> ItemBuilder(itemProduct: dataProduct[index],),
-                    separatorBuilder: (context, index)=> const SizedBox(width: 20,),
-                    itemCount: dataProduct.length
-                ),
-              ),
+             SizedBox(
+               height: 300,
+               child: GridView.builder(
+                 shrinkWrap: true,
+                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                   crossAxisCount: 3,
+                   mainAxisSpacing: 0.1,
+                   crossAxisSpacing: 0.1
+
+               ),
+                   itemBuilder: (context, index)=> ItemBuilder(itemProduct: dataProduct[index],),
+                 itemCount: dataProduct.length,
+               ),
+             )
             ],
           ),
         ),

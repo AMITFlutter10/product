@@ -9,19 +9,17 @@ class ItemBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Image.asset("${itemProduct.image}",width: 100,height: 100,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text("${itemProduct.name}"),
-              Text("${itemProduct.price}")
-            ],
-          )
-        ],
-      ),
+    return Column(
+      children: [
+        Image.asset("${itemProduct.image}",width: 100,height: 100,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text("${itemProduct.name}"),
+            Text("${itemProduct.price}")
+          ],
+        )
+      ],
     );
   }
 }
