@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:product/cash_helper.dart';
+import 'package:product/enums.dart';
 import 'package:product/view/screens/login_page.dart';
+import 'package:product/view/screens/oboarding/on_boarding_page.dart';
 
 class SplashScreen extends StatefulWidget{
   const SplashScreen({super.key});
@@ -14,7 +17,12 @@ class SplashScreen extends StatefulWidget{
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Timer(const Duration(seconds: 5), () {
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage() ));
+
+      CashHelper.getBool(key:SharedKeys.onBoarding) == true  ?
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginPage() ))
+          :
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>const OnBoarding() ) );
+
     });
     super.initState();
   }

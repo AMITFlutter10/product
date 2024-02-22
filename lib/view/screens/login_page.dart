@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:product/cash_helper.dart';
+import 'package:product/enums.dart';
+import 'package:product/view/screens/home_page.dart';
 import 'package:product/view/widgets/default_form_field.dart';
 
 class LoginPage extends StatefulWidget{
@@ -9,7 +12,12 @@ class LoginPage extends StatefulWidget{
   State<LoginPage> createState() => _LoginPageState();
 }
 
-TextEditingController nameController =TextEditingController();
+TextEditingController  emailController = TextEditingController(
+    text: CashHelper.getString(key: SharedKeys.email));
+TextEditingController  passwordController = TextEditingController(
+    text: CashHelper.getString(key: SharedKeys.password));
+
+
 
 class _LoginPageState extends State<LoginPage> {
   @override
@@ -68,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
           ),),
          const SizedBox(height: 20,),
          DefaultFormField(
-           controller: nameController,
+           controller: emailController,
            keyboardType: TextInputType.name,
            labelText: "Email",
            hintText: "enter your email",
@@ -82,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
            const SizedBox(height: 20,),
 
            DefaultFormField(
-           controller: nameController,
+           controller: passwordController,
            keyboardType: TextInputType.number,
            labelText: "password",
            hintText: "enter your password",
@@ -94,7 +102,13 @@ class _LoginPageState extends State<LoginPage> {
            },
          ),
            const SizedBox(height: 40,),
-                 ElevatedButton(onPressed: (){},
+                 ElevatedButton(onPressed: (){
+                  CashHelper.putString(key: SharedKeys.email, value: emailController.text);
+                  CashHelper.putString(key: SharedKeys.password, value: passwordController.text);
+                   print(emailController.text);
+                   print(passwordController.text);
+                   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>HomePage()), (route) => false);
+                 },
                      child: Text("LOGIN"))
        ],),
      ),

@@ -3,6 +3,7 @@ import 'package:product/view/widgets/default_text.dart';
 
 import '../../model/item_model.dart';
 import '../../model/model.dart';
+import '../product_details.dart';
 import 'first_product.dart';
 import 'itembulider.dart';
 
@@ -63,7 +64,7 @@ class HomePage extends StatelessWidget{
                 fontSize: 25),),
               ),
               SizedBox(
-              height: 300,
+              height: 200,
                 width: 500,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
@@ -74,19 +75,36 @@ class HomePage extends StatelessWidget{
                 ),
               ),
              SizedBox(
-               height: 300,
+               height: 350,
                child: GridView.builder(
                  shrinkWrap: true,
                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                   crossAxisCount: 3,
-                   mainAxisSpacing: 0.1,
-                   crossAxisSpacing: 0.1
+                   crossAxisCount: 2,
+                   // mainAxisSpacing: 0.1,
+                   // crossAxisSpacing: 0.1
 
                ),
-                   itemBuilder: (context, index)=> ItemBuilder(itemProduct: dataProduct[index],),
+                   itemBuilder: (context, index)=> ItemBuilder(
+                     itemProduct: dataProduct[index],),
                  itemCount: dataProduct.length,
                ),
-             )
+             ),
+
+              // InkWell(
+              //   onTap: (){
+              //     Navigator.push(context, MaterialPageRoute(builder: (_)=> ProductDetails()));
+              //   },
+              //   child: Container(
+              //     height: 100,
+              //     width: 150,
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(20),
+              //       color: Colors.red,
+              //     ),
+              //     child: Image.asset("assets/images/pic1.jpg"),
+              //   ),
+              // )
+
             ],
           ),
         ),

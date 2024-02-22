@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:product/enums.dart';
 import 'package:product/view/screens/login_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../cash_helper.dart';
 import 'builder_onboarding.dart';
 import 'onboardingModel.dart';
 
 class OnBoarding extends StatefulWidget {
-  OnBoarding({super.key,});
+ const OnBoarding({super.key,});
 
   @override
   State<OnBoarding> createState() => _OnBoardingState();
 }
 
 class _OnBoardingState extends State<OnBoarding> {
- var pageController =PageController();
+ var pageController = PageController();
   bool isLast = false;
+
   void finishOnBoarding(Widget screenName) {
+    CashHelper.putBool(key: SharedKeys.onBoarding, value: isLast );
     // Navigator.pushNamedAndRemoveUntil(context, screenName, (route) => false);
-    Navigator.pushAndRemoveUntil(
-        context, MaterialPageRoute(builder: (_) => screenName), (
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => screenName), (
         route) => false);
   }
   @override
@@ -53,11 +56,10 @@ class _OnBoardingState extends State<OnBoarding> {
                   },
                 itemCount: onBoardList.length,
                 onPageChanged: (int index){
-                  if(index== onBoardList.length-1){
+                  if(index== onBoardList.length-1) {
                     setState(() {
                       isLast = true;
-                    });
-                  }
+                    });}
                    else{
                      setState(() {
                        isLast =false;
@@ -81,8 +83,16 @@ class _OnBoardingState extends State<OnBoarding> {
                   activeDotColor:  Colors.indigo
               ),
             ),
-
-            ElevatedButton(onPressed: (){}, child: Text("Next"))
+            Visibility(
+              visible: isLast,
+                child: ElevatedButton(
+                    onPressed: (){
+                      // Navigator.pushAndRemoveUntil(context,
+                      //     MaterialPageRoute(builder: (_)=>HomePage()),
+                      //         (route) => false);
+                      finishOnBoarding(LoginPage());
+                    },
+                    child: Text("Next")))
 
           ],
         ),
