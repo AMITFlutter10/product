@@ -10,26 +10,31 @@ class ProductDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body:
-        Column(
-          children: [
-            Image.asset(image),
-            SizedBox(height: 20,),
-            Text(title),
-            SizedBox(height: 10,),
-            Text("${price}"),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+        SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
               children: [
-              ElevatedButton(onPressed: (){}, child: Icon(Icons.minimize)),
-              Text("counter "),
-              ElevatedButton(onPressed: (){}, child: Icon(Icons.add)),
+                Image.asset(image),
+                SizedBox(height: 20,),
+                Text(title),
+                SizedBox(height: 10,),
+                Text("${price}"),
 
-            ],),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                  ElevatedButton(onPressed: (){}, child: Center(child: Icon(Icons.minimize))),
+                  Text("counter"),
+                  ElevatedButton(onPressed: (){}, child: Icon(Icons.add)),
 
-            ElevatedButton(onPressed: (){}, child: Text("Add TO cart"))
+                ],),
 
-          ],
+                ElevatedButton(onPressed: (){}, child: Text("Add TO cart"))
+
+              ],
+            ),
+          ),
         )
 
     );
